@@ -4,6 +4,7 @@ import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import GeneralHeader from "dh-marvel/components/layouts/header/general-header.component";
 import GeneralFooter from "dh-marvel/components/layouts/footer/general-footer.component";
+import Footer from "../Layout/Footer";
 
 const LayoutGeneral: FC<PropsWithChildren> = ({
   children,
