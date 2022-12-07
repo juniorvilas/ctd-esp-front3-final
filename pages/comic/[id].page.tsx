@@ -59,7 +59,9 @@ export default function ComicDetail(props: PropsDetails) {
                 component="div"
             >PRICE: $ {comic?.price}</Typography>
             {comic?.stock > 0 ?
-                <Button variant="contained">Comprar</Button>
+                <Link href={`/checkout/${comic.id}`}>
+                    <Button variant="contained">Comprar</Button>
+                </Link>
                 : <Typography
                     gutterBottom
                     noWrap

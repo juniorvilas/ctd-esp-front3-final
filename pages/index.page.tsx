@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
-import { useGetCharacters } from "hooks/useGetCharacters";
 import { Comic, Craracter } from "shared/types/apiSchema";
 import { getCharacters, getComics } from "dh-marvel/services/marvel/marvel.service";
 import { styled } from '@mui/material/styles';
@@ -78,7 +77,9 @@ export default function Home(props: PropsHome) {
                 alt={comic.title}
               />
               <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 10 }}>
-                <Button variant="contained">Comprar</Button>
+                <Link href={`/checkout/${comic.id}`}>
+                  <Button variant="contained">Comprar</Button>
+                </Link>
                 <Link href={`/comic/${comic.id}`}>
                   <Button variant="outlined">
                     Detalhes
