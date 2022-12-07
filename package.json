@@ -17,6 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@hookform/resolvers": "^2.9.10",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -28,8 +29,10 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.40.0",
     "react-query": "^3.39.2",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "yup": "^0.32.11"
   },
   "resolutions": {
     "styled-components": "^5"
