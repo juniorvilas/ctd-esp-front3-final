@@ -1,9 +1,13 @@
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from 'react-query';
 import type { AppProps } from "next/app";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import { theme } from "dh-marvel/styles/material-theme";
-import { useState } from "react";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { CheckoutProvider } from "contexts/Provider";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -21,7 +25,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <LayoutGeneral>
-          <Component {...pageProps} />
+          <ToastContainer />
+          <CheckoutProvider>
+            <Component {...pageProps} />,
+          </CheckoutProvider>
         </LayoutGeneral>
         <style jsx global>{`
         /* Other global styles such as 'html, body' etc... */
