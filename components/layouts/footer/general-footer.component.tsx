@@ -12,7 +12,7 @@ const GeneralFooter = () => {
       alignItems="center"
       justifyContent={"center"}
       borderTop={"1px solid #eaeaea"}
-      sx={{ backgroundColor: "#000" }}
+      sx={{ backgroundColor: "#202020" }}
     >
       <Link
         href="https://www.digitalhouse.com"
@@ -31,13 +31,9 @@ const GeneralFooter = () => {
           display={"flex"}
           alignItems="center"
           justifyContent={"center"}
+          color={"#EC1D24"}
         >
-          <Image
-            src="https://dh-frontend.cdn.prismic.io/dh-frontend/f197059f-7cf3-4a35-a182-314ea08cb560_LogoHeader.svg"
-            alt="Digital House Logo"
-            width={168}
-            height={13}
-          />
+          Carlindo Junior
         </Box>
       </Link>
     </Box>

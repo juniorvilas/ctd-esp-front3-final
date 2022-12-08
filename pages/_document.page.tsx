@@ -11,6 +11,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/svg+xml" href="/marvel.svg" />
       </Head>
       <body style={{ height: "100%" }}>
         <Main />

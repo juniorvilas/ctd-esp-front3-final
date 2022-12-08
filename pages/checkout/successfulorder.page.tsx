@@ -1,5 +1,6 @@
 import { CardMedia, Container, Typography } from "@mui/material";
 import { useCheckoutState } from "contexts/Context";
+import Head from "next/head";
 
 export default function SuccessFullOrder() {
 
@@ -8,7 +9,9 @@ export default function SuccessFullOrder() {
     return (
 
         <Container>
-
+            <Head>
+                <title>Marvel - Aproveite sua compra!</title>
+            </Head>
             <Container sx={{
                 width: '500px', height: '100px', margin: '20px auto', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00a000', color: 'white',
                 borderRadius: '30px'

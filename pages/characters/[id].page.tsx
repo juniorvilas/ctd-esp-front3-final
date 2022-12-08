@@ -1,5 +1,6 @@
 import { Button, CardMedia, Container, Typography } from "@mui/material";
 import { getCharacter } from "dh-marvel/services/marvel/marvel.service"
+import Head from "next/head";
 import { Comic, Craracter } from "shared/types/apiSchema"
 
 
@@ -36,6 +37,10 @@ export default function CharacterDetail(props: PropsDetails) {
     console.log(character)
     return (
         <Container>
+
+            <Head>
+                <title>Marvel - Personagens!</title>
+            </Head>
             <Typography
                 gutterBottom
                 noWrap

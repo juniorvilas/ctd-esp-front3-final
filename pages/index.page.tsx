@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Button, CardMedia, Link, Typography } from "@mui/material";
+import { Button, CardMedia, Container, Link, Typography } from "@mui/material";
 import { useState } from "react";
 
 
@@ -50,18 +50,26 @@ export default function Home(props: PropsHome) {
 
 
   return (
-    <>
+    <Container sx={{ padding: '20px' }}>
       <Head>
-        <title>Marvel</title>
+        <title>Marvel - Home</title>
       </Head>
 
-
+      <Typography
+        gutterBottom
+        align="center"
+        noWrap
+        variant="h3"
+        component="div"
+      >
+        Seja bem vindo ao DH-Marvel!
+      </Typography>
 
 
       <Box sx={{ flexGrow: 1, margin: '20px' }}>
-        <Grid container spacing={2}>
+        <Grid sx={{ justifyContent: 'center' }} container spacing={2}>
           {data.data.results.map((comic: Comic) => (
-            <Grid key={comic.id} item xs={6} md={4} >
+            <Grid key={comic.id} width={350} item >
               <Typography
                 gutterBottom
                 noWrap
@@ -94,7 +102,7 @@ export default function Home(props: PropsHome) {
 
         </Grid>
       </Box>
-    </>
+    </Container>
   );
 };
 

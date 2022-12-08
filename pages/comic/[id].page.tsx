@@ -1,5 +1,6 @@
 import { Button, CardMedia, Container, Typography } from "@mui/material";
 import { getComic } from "dh-marvel/services/marvel/marvel.service"
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router"
 import { Comic } from "shared/types/apiSchema"
@@ -38,6 +39,10 @@ export default function ComicDetail(props: PropsDetails) {
     console.log(data)
     return (
         <Container sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Head>
+                <title>Marvel - Comic</title>
+            </Head>
+
             <Typography
                 gutterBottom
                 noWrap

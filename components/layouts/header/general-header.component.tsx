@@ -13,7 +13,7 @@ type Props = {
 
 const Header: FC<Props> = ({ variant }: Props) => {
   return (
-    <Container maxWidth="xl">
+    <Container sx={{ backgroundColor: '#9F0013' }} maxWidth="xl">
       <Toolbar disableGutters>
         <NextLink href="/" passHref>
           <MUILink
@@ -32,7 +32,7 @@ const Header: FC<Props> = ({ variant }: Props) => {
         </NextLink>
         {variant == "general" && (
           <Box>
-            <NextLink href="/" passHref>
+            <NextLink href="/faq" passHref>
               <MUILink
                 variant="body2"
                 sx={{ color: "white", fontSize: 18, fontWeight: 600 }}

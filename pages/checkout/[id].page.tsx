@@ -13,6 +13,7 @@ import { error } from "helpers/notify/error";
 import { useCheckoutDispatch, useCheckoutState } from "contexts/Context";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 
 export const getStaticPaths = async () => {
@@ -79,6 +80,10 @@ export default function Checkout(props: PropsDetails) {
 
     return (
         <Container sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Head>
+                <title>Marvel - Checkout</title>
+            </Head>
+
             <Container sx={{
                 marginTop: '10px', width: '50%', margin: '0px auto', display: 'flex', flexDirection: 'column'
             }}>
