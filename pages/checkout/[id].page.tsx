@@ -2,9 +2,17 @@ import { Button, CardMedia, Container, Input, InputLabel, TextField, Typography 
 import { getComic } from "dh-marvel/services/marvel/marvel.service"
 import { Comic } from "shared/types/apiSchema"
 import { FormControl } from '@mui/material';
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from "shared/yupValidations/schemas";
+import { useCheckout } from "dh-marvel/services/checkout/checkout.service";
+import { success } from "helpers/notify/success";
+import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
+import { FormData } from "shared/types/apiSchema";
+import { error } from "helpers/notify/error";
+import { useCheckoutDispatch, useCheckoutState } from "contexts/Context";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 
 export const getStaticPaths = async () => {
@@ -39,10 +47,34 @@ export default function Checkout(props: PropsDetails) {
         resolver: yupResolver(schema)
     });
 
+    const { mutate: createCheckout } = useCheckout()
+    const router = useRouter()
+    const { checkout } = useCheckoutState()
+    const { registerCheckout, registerOrder } = useCheckoutDispatch()
+
     const onSubmit = (data: any) => {
-        console.log(data);
+        createCheckout(data, {
+            onSuccess: () => {
+                success("Compra realizada com sucesso!")
+                registerCheckout(data)
+                registerOrder({
+                    title: comic.title,
+                    price: comic.price,
+                    path: comic.thumbnail.path,
+                    extension: comic.thumbnail.extension
+                })
+                router.push('successfulorder')
+
+                console.log(checkout)
+            }
+
+        })
+
     }
 
+    useEffect(() => {
+        console.log(checkout)
+    }, [checkout])
 
 
     return (
@@ -243,7 +275,7 @@ export default function Checkout(props: PropsDetails) {
                         noWrap
                         variant="h5"
                         component="div"
-                    >PRICE: $ {comic?.price}</Typography>
+                    >Preço: R$ {comic?.price}</Typography>
 
                 </Container>
 
