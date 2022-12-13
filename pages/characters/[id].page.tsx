@@ -47,13 +47,13 @@ export default function CharacterDetail({ data }: PropsDetails) {
                 variant="h3"
                 component="div"
             >
-                {character.name}
+                {character?.name}
             </Typography>
             <CardMedia
                 component="img"
                 height="350"
-                image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                alt={character.name}
+                image={`${character?.thumbnail.path}.${character?.thumbnail.extension}`}
+                alt={character?.name}
             />
             <Typography
                 gutterBottom
@@ -61,7 +61,7 @@ export default function CharacterDetail({ data }: PropsDetails) {
                 variant="subtitle1"
                 component="div"
             >
-                {character.description}
+                {character?.description}
             </Typography>
 
 
