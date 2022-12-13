@@ -11,11 +11,14 @@ import { useCheckoutDispatch, useCheckoutState } from "contexts/Context";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { formatCEP } from "utils/formatters/formatCEP";
+import { formatCreditCardAddSpace } from "utils/formatters/formatCreditCArdAddSpace";
+import { formatCreditCardExpiration } from "utils/formatters/formatCreditCardExpiration";
 
 
 export const getStaticPaths = async () => {
     return {
-        paths: [{ params: { id: "1886" } }],
+        paths: [{ params: { id: "82970" } }],
         fallback: true
     };
 }
@@ -41,7 +44,7 @@ export default function Checkout({ data }: PropsDetails) {
 
     const comic = data;
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -171,7 +174,12 @@ export default function Checkout({ data }: PropsDetails) {
                             {`${errors.state?.message}`}
                         </Typography>
                         : ''}
-                    <TextField {...register("zipCode")} id="zipCode" label="CEP" variant="outlined" />
+                    <TextField  {...register('zipCode', {
+                        onChange: e => {
+                            setValue('zipCode', formatCEP(e.target.value));
+                        },
+                    })}
+                        id="zipCode" label="CEP" variant="outlined" />
                     {errors.zipCode?.message ?
                         <Typography
                             color="red"
@@ -192,7 +200,11 @@ export default function Checkout({ data }: PropsDetails) {
                         Dados para pagamento:
                     </Typography>
 
-                    <TextField {...register("number")} id="number" label="Número cartão" variant="outlined" />
+                    <TextField {...register('number', {
+                        onChange: e => {
+                            setValue('number', formatCreditCardAddSpace(e.target.value));
+                        },
+                    })} id="number" label="Número cartão" variant="outlined" />
                     {errors.number?.message ?
                         <Typography
                             color="red"
@@ -216,7 +228,11 @@ export default function Checkout({ data }: PropsDetails) {
                             {`${errors.nameOnCard?.message}`}
                         </Typography>
                         : ''}
-                    <TextField {...register("expDate")} id="expDate" label="Data de validade" variant="outlined" />
+                    <TextField {...register('expDate', {
+                        onChange: e => {
+                            setValue('expDate', formatCreditCardExpiration(e.target.value));
+                        },
+                    })} id="expDate" label="Data de validade" variant="outlined" />
                     {errors.expDate?.message ?
                         <Typography
                             color="red"

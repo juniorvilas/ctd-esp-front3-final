@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { error } from "helpers/notify/error";
 import { useMutation } from "react-query";
 import { FormData } from "shared/types/apiSchema";
