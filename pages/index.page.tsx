@@ -1,42 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
-import { Comic, Craracter } from "shared/types/apiSchema";
-import { getCharacters, getComics } from "dh-marvel/services/marvel/marvel.service";
+import { Comic } from "shared/types/apiSchema";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Button, CardMedia, Container, Link, Typography } from "@mui/material";
-import { useState } from "react";
+import { useGetComics } from "dh-marvel/services/marvel/useGetComics";
 
 
-export async function getStaticProps() {
-  /* const data = await getCharacters() */
-  const data = await getComics(12, 12)
+export default function Home() {
 
-  return {
-    props: {
-      data
-    }
-  }
-}
-
-type PropsHome = {
-  data: {
-    data: {
-      results: Comic[]
-    }
-  }
-}
-
-export default function Home(props: PropsHome) {
-
-
-  const { data } = props;
-
-  console.log(data.data.results)
-
+  const { data, loadingMoreComics, loadingLessComics, isLoading } = useGetComics()
 
 
 
@@ -50,7 +25,7 @@ export default function Home(props: PropsHome) {
 
 
   return (
-    <Container sx={{ padding: '20px' }}>
+    <Container sx={{ padding: '20px', textAlign: 'center' }}>
       <Head>
         <title>Marvel - Home</title>
       </Head>
@@ -62,13 +37,13 @@ export default function Home(props: PropsHome) {
         variant="h3"
         component="div"
       >
-        Seja bem vindo ao DH-Marvel!
+        Seja bem vindo ao DH Marvel
       </Typography>
 
 
       <Box sx={{ flexGrow: 1, margin: '20px' }}>
         <Grid sx={{ justifyContent: 'center' }} container spacing={2}>
-          {data.data.results.map((comic: Comic) => (
+          {data?.data?.results.map((comic: Comic) => (
             <Grid key={comic.id} width={350} item >
               <Typography
                 gutterBottom
@@ -102,6 +77,14 @@ export default function Home(props: PropsHome) {
 
         </Grid>
       </Box>
+
+      <Button onClick={loadingLessComics} variant="outlined">
+        Carregar menos - 12 ...
+      </Button>
+      <Button sx={{ marginLeft: "12px" }} onClick={loadingMoreComics} variant="outlined">
+        Carregar mais + 12...
+      </Button>
+
     </Container>
   );
 };

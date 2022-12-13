@@ -2,14 +2,11 @@ import { Button, CardMedia, Container, Input, InputLabel, TextField, Typography 
 import { getComic } from "dh-marvel/services/marvel/marvel.service"
 import { Comic } from "shared/types/apiSchema"
 import { FormControl } from '@mui/material';
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from "shared/yupValidations/schemas";
 import { useCheckout } from "dh-marvel/services/checkout/checkout.service";
 import { success } from "helpers/notify/success";
-import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
-import { FormData } from "shared/types/apiSchema";
-import { error } from "helpers/notify/error";
 import { useCheckoutDispatch, useCheckoutState } from "contexts/Context";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -40,9 +37,9 @@ type PropsDetails = {
 
 
 
-export default function Checkout(props: PropsDetails) {
-    const data = props
-    const comic = data?.data;
+export default function Checkout({ data }: PropsDetails) {
+
+    const comic = data;
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)

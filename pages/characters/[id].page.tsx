@@ -1,7 +1,7 @@
 import { Button, CardMedia, Container, Typography } from "@mui/material";
 import { getCharacter } from "dh-marvel/services/marvel/marvel.service"
 import Head from "next/head";
-import { Comic, Craracter } from "shared/types/apiSchema"
+import { Comic, Character } from "shared/types/apiSchema"
 
 
 export const getStaticPaths = async () => {
@@ -22,15 +22,15 @@ export async function getStaticProps({ params }: any) {
 }
 
 type PropsDetails = {
-    data: Craracter
+    data: Character
 
 }
 
 
 
-export default function CharacterDetail(props: PropsDetails) {
-    const data = props
-    const character = data.data;
+export default function CharacterDetail({ data }: PropsDetails) {
+
+    const character = data;
 
 
 
