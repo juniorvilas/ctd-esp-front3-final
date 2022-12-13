@@ -14,72 +14,6 @@ export type FormData = {
 }
 
 
-export type Craracter = {
-    id: number;
-    name: string
-    description: string
-    modified: string
-    thumbnail: {
-        path: string
-        extension: string
-    },
-    resourceURI: string
-    comics: {
-        available: number
-        collectionURI: string
-        items: [
-            {
-                resourceURI: string
-                name: string
-            },
-
-        ],
-        returned: number
-    },
-    series: {
-        available: number,
-        collectionURI: string,
-        items: [
-            {
-                resourceURI: string,
-                name: string
-            },
-
-        ],
-        returned: number
-    },
-    stories: {
-        available: number,
-        collectionURI: string,
-        items: [
-            {
-                resourceURI: string,
-                name: string,
-                type: string
-            },
-
-        ],
-        returned: number
-    },
-    events: {
-        available: number,
-        collectionURI: string,
-        items: [
-            {
-                resourceURI: string,
-                name: string
-            }
-        ],
-        returned: number
-    },
-    urls: [
-        {
-            type: string
-            url: string
-        },
-
-    ]
-}
 
 export type Comic = {
     id: string;
@@ -105,3 +39,53 @@ type items = {
     name: string;
     role: string;
 };
+
+
+export interface Character {
+    id: string;
+    name: string;
+    description: string;
+    modified: string;
+    resourceURI: string;
+    urls: URL[];
+    thumbnail: Thumbnail;
+    comics: Comics;
+    stories: Stories;
+    events: Comics;
+    series: Comics;
+}
+
+interface Comics {
+    available: string;
+    returned: string;
+    collectionURI: string;
+    items: ComicsItem[];
+}
+
+interface ComicsItem {
+    resourceURI: string;
+    name: string;
+}
+
+interface Stories {
+    available: string;
+    returned: string;
+    collectionURI: string;
+    items: StoriesItem[];
+}
+
+interface StoriesItem {
+    resourceURI: string;
+    name: string;
+    type: string;
+}
+
+interface Thumbnail {
+    path: string;
+    extension: string;
+}
+
+interface URL {
+    type: string;
+    url: string;
+}
