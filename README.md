@@ -1,4 +1,4 @@
-# Projeto final
+# Projeto final do curso da Digital House
 
 Exame Final de Frontend VI
 
